@@ -1,0 +1,16 @@
+pandas
+numpy
+requests
+beautifulsoup4
+aiohttp
+asyncio
+nltk
+gensim
+scikit-learn
+matplotlib
+seaborn
+scipy
+wordcloud
+tqdm
+mwclient
+wikipedia-api
