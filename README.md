@@ -25,5 +25,5 @@ This project, developed as part of a computational social science coursework, in
 - Statistical testing (Welch’s t-tests) used to assess whether observed differences between gender groups are statistically significant across structural, editorial, and textual features
 
 
-### Key note
+## Key note
 This is an **exploratory computational text analysis** of Wikipedia biographies. Gender is derived from Wikidata (P21 property) and should be interpreted as a structured metadata label rather than a sociological ground truth.
