@@ -1,49 +1,63 @@
 # %%
-# load necessary packages
-import wikipediaapi
-import requests
-from bs4 import BeautifulSoup
+# core libraries
 import json
 import time
+import re
+import ast
+import urllib.parse
+import string
+from collections import Counter
+from collections import Counter
+
+# data handling
+import pandas as pd
+
+# web scraping & requests
+import requests
+from bs4 import BeautifulSoup
+
+# async pipeline
 import aiohttp
 import asyncio
 import nest_asyncio
-import pandas as pd
+
+# Wikipedia/ MediaWiki
+import wikipediaapi
 from mw.api import Session
 from mw.lib import reverts
-import urllib.parse
-import ast
-import re
-import matplotlib.pyplot as plt
-import seaborn as sns
-import networkx as nx
+
+# NLP (NLTK)
 import nltk
-from nltk.corpus import stopwords
+from nltk.corpus import stopwords, wordnet
 from nltk.tokenize import word_tokenize
-from nltk import pos_tag
-from collections import Counter
-from tqdm import tqdm
-from tqdm.asyncio import tqdm
-from scipy.stats import ttest_ind
-import re
-import nltk
 from nltk.sentiment import SentimentIntensityAnalyzer
-from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-from sklearn.feature_extraction.text import CountVectorizer
-import string
-from nltk.tokenize import word_tokenize
-from nltk.corpus import wordnet
+from nltk import pos_tag
+
+# topic modelling
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
 from gensim import corpora
 from gensim.models import LdaModel
-from collections import Counter
+
+# statistics
+from scipy.stats import ttest_ind
+
+# visualization
+import matplotlib.pyplot as plt
+import seaborn as sns
 from wordcloud import WordCloud
-# %%
+
+# graph analysis
+import networkx as nx
+
+# progress bars
+from tqdm import tqdm
+from tqdm.asyncio import tqdm as tqdm_async
+
 # %%
 # set up user agent for Wikipedia API
-headers = {'User-Agent': "WikipediaBiasResearch/1.0 (regina.gilyan@uni-konstanz.de)"}
+headers = {'User-Agent': "WikipediaBiasResearch/1.0"}
 
 # Wikipedia URL of Vital Articles Level 4 - People
 vital_articles_url = "https://en.wikipedia.org/wiki/Wikipedia:Vital_articles/Level/4/People"
@@ -87,7 +101,7 @@ for li in soup.select("li"):  # Select all <li> elements
             article_data[page_title] = {"link": page_link, "rating": rating}
 
 
-# print results to see if it worked
+# print results
 for key, value in list(article_data.items())[:20]:
     print(f"{key}: {value}")
 
